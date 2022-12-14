@@ -135,3 +135,8 @@ def getresults(request):
         employee.measurements_count += 1
         employee.save()
     return render(request, 'results/result.html')
+
+
+@login_required(login_url='login')
+def anemia_analyse(request):
+    return render(request, 'anemia-analyse.html')
