@@ -9,6 +9,7 @@ from django.template.context_processors import csrf
 from plotly.offline import plot
 from plotly.graph_objs import Scatter
 from .models import Employee
+from .anemia_service import AnemiaService
 
 @login_required(login_url='login')
 def home(request):
@@ -140,3 +141,23 @@ def getresults(request):
 @login_required(login_url='login')
 def anemia_analyse(request):
     return render(request, 'anemia-analyse.html')
+
+
+@login_required(login_url='login')
+def anemia_result(request):
+    if request.method == 'POST':
+        employee = request.user.employee
+        employee.sex = request.POST.get('sex')
+        employee.age = request.POST.get('age')
+        employee.rbc = request.POST.get('rbc')
+        employee.pcv = request.POST.get('pcv')
+        employee.mcv = request.POST.get('mcv')
+        employee.mch = request.POST.get('mch')
+        employee.mchc = request.POST.get('mchc')
+        employee.tlc = request.POST.get('tlc')
+        employee.plt = request.POST.get('plt')
+
+        employee.measurements_count += 1
+        employee.save()
+
+    return render(request, 'results/anemia-result.html')
