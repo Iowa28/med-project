@@ -11,6 +11,9 @@ from plotly.graph_objs import Scatter
 from .models import Employee
 from .anemia_service import AnemiaService
 
+anemia_service = AnemiaService()
+
+
 @login_required(login_url='login')
 def home(request):
     return render(request, "index.html")
@@ -113,25 +116,25 @@ def analyse(request):
 def getresults(request):
     if request.method == 'POST':
         employee = request.user.employee
-        if (request.POST.get('pulse') != ''):
+        if request.POST.get('pulse') != '':
             employee.pulse = request.POST.get('pulse')
-        if (request.POST.get('sys') != ''):
+        if request.POST.get('sys') != '':
             employee.sys_pressure = request.POST.get('sys')
-        if (request.POST.get('dias') != ''):
+        if request.POST.get('dias') != '':
             employee.dias_pressure = request.POST.get('dias')
 
-        for i in range(0, 4):
-            if (request.POST.get('pulse') != ''):
+        for i in range(0, len(employee.list_of_pulse)):
+            if request.POST.get('pulse') != '':
                 employee.list_of_pulse[i] = employee.list_of_pulse[i + 1]
-            if (request.POST.get('sys') != ''):
+            if request.POST.get('sys') != '':
                 employee.list_of_sys_pressure[i] = employee.list_of_sys_pressure[i + 1]
-            if (request.POST.get('dias') != ''):
+            if request.POST.get('dias') != '':
                 employee.list_of_dias_pressure[i] = employee.list_of_dias_pressure[i + 1]
-        if (request.POST.get('pulse') != ''):
+        if request.POST.get('pulse') != '':
             employee.list_of_pulse[4] = employee.pulse
-        if (request.POST.get('sys') != ''):
+        if request.POST.get('sys') != '':
             employee.list_of_sys_pressure[4] = employee.sys_pressure
-        if (request.POST.get('dias') != ''):
+        if request.POST.get('dias') != '':
             employee.list_of_dias_pressure[4] = employee.dias_pressure
         employee.measurements_count += 1
         employee.save()
@@ -156,6 +159,8 @@ def anemia_result(request):
         employee.mchc = request.POST.get('mchc')
         employee.tlc = request.POST.get('tlc')
         employee.plt = request.POST.get('plt')
+
+        # anemia_service.__load_dataset(employee)
 
         employee.measurements_count += 1
         employee.save()
