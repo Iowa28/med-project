@@ -148,6 +148,8 @@ def anemia_analyse(request):
 
 @login_required(login_url='login')
 def anemia_result(request):
+    contex = {}
+
     if request.method == 'POST':
         employee = request.user.employee
         employee.sex = request.POST.get('sex')
@@ -160,9 +162,19 @@ def anemia_result(request):
         employee.tlc = request.POST.get('tlc')
         employee.plt = request.POST.get('plt')
 
-        # anemia_service.__load_dataset(employee)
+        hgb = anemia_service.calculate_hgb(employee)
+        employee.hgb = hgb
+        print('Hgb result: {}'.format(hgb))
+
+        if employee.sex.lower() == 'муж':
+            is_ok = 13.2 < hgb < 16.6
+        else:
+            is_ok = 11.6 < hgb < 15
+        # print('Is ok: {}'.format(is_ok))
+
+        contex['result'] = is_ok
 
         employee.measurements_count += 1
         employee.save()
 
-    return render(request, 'results/anemia-result.html')
+    return render(request, 'results/anemia-result.html', contex)

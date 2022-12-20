@@ -49,7 +49,15 @@
     </div>
 
     <div class="container">
-        Как жизнь?
+        <ul style="padding-bottom: 100px; padding-top: 30px;">
+        <li>
+            {% if result %}
+            Показатель гемоглобина в норме.
+            {% else %}
+            Показатель гемоглобина не норме. Обратитесь к врачу.
+            {% endif %}
+        </li>
+        </ul>
     </div>
 
     <div class="page_footer pd-section" style="margin-top: 150px">

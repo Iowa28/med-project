@@ -37,11 +37,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5eb55646-2013-4896-a8b6-5f4b211db582" name="Default Changelist" comment="pass data from html to view">
-      <change afterPath="$PROJECT_DIR$/home/cvs/anemia_dataset.csv" afterDir="false" />
+    <list default="true" id="5eb55646-2013-4896-a8b6-5f4b211db582" name="Default Changelist" comment="fix csv">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/anemia_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/anemia_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/results/anemia-result.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/results/anemia-result.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,6 +167,11 @@
       <workItem from="1671297091988" duration="2581000" />
       <workItem from="1671347040038" duration="2370000" />
       <workItem from="1671379745058" duration="2362000" />
+      <workItem from="1671383462730" duration="522000" />
+      <workItem from="1671467013536" duration="71000" />
+      <workItem from="1671467411168" duration="135000" />
+      <workItem from="1671468524776" duration="9000" />
+      <workItem from="1671550929658" duration="4738000" />
     </task>
     <task id="LOCAL-00001" summary="pass data from html to view">
       <created>1671299782258</created>
@@ -174,7 +180,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671299782258</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="dataset">
+      <created>1671383491052</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671383491053</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix csv">
+      <created>1671383598643</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1671383598643</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +213,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="pass data from html to view" />
-    <option name="LAST_COMMIT_MESSAGE" value="pass data from html to view" />
+    <MESSAGE value="dataset" />
+    <MESSAGE value="fix csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix csv" />
   </component>
 </project>
