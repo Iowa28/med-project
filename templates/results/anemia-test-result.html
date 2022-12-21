@@ -3,19 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Анализ крови</title>
+    <title>Тест крови</title>
     <link href="{% static "css/bootstrap.min.css"%}" rel="stylesheet">
     <link href="{% static "/css/base.css"%}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/analys-styles.css"%} ">
 </head>
-<style>
-    #hello_msg{
-        font-size: 18px;
-        color: #8A2BE2;
-        margin-right: 20px;
-    }
-</style>
 <body>
 <div class="default">
     <div class="page_header">
@@ -47,112 +40,35 @@
                 <span class="nav-active d-none"></span>
             </div>
             <div class="nav-item">
-                <a href="{% url 'anemiaanalyse' %}" class="link active">
+                <a href="{% url 'anemiaanalyse' %}" class="link">
                     анализ крови
                 </a>
-                <span class="nav-active"></span>
+                <span class="nav-active d-none"></span>
             </div>
             <div class="nav-item">
-                <a href="{% url 'anemiatest' %}" class="link">
+                <a href="{% url 'anemiatest' %}" class="link active">
                     тест крови
                 </a>
-                <span class="nav-active d-none"></span>
+                <span class="nav-active"></span>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <!--        ATTENTION onsubmit="return false;"  !!!-->
-        <form method="POST" action="anemia-result">
-            {% csrf_token %}
-            <div class="mt-5 m-auto w-50">
-                <div>
-                    <h3 class="text-center font-weight-bold" style="padding-bottom: 20px">{{user.username}}, введите ваши показания крови:</h3>
-                </div>
-
-                <div class="analyze_item_container" style="margin-top: 20px">
-                    <span class="item-title">Пол:</span>
-                    <input type="text" placeholder="выберите" list="optionsSex"
-                           class="form-control form-input item-control radio-inline"
-                           id="sex" name="sex">
-                    <datalist id="optionsSex">
-                        <option>Муж</option>
-                        <option>Жен</option>
-                    </datalist>
-                </div>
-
-                <div class="analyze_item_container">
-                    <span class="item-title">Возраст:</span>
-                    <input type="number" placeholder="в годах"
-                           class="form-control form-input item-control"
-                           id="age" name="age">
-                </div>
-
-                <div class="analyze_item_container">
-                    <span class="item-title">Количество эритроцитов:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="rbc" name="rbc">
-                </div>
-
-                <div class="analyze_item_container">
-                    <span class="item-title">Объем кровяных клеток:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="pcv" name="pcv">
-                </div>
-
-                <div class="analyze_item_container">
-                    <span class="item-title">Средний объём эритроцита:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="mcv" name="mcv">
-                </div>
-
-                <div class="analyze_item_container">
-                    <span class="item-title">Cреднеклеточный гемоглобин:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="mch" name="mch">
-                </div>
-
-                <div class="analyze_item_container">
-                    <span class="item-title">Насыщенность эритроцитов гемоглобином:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="mchc" name="mchc">
-                </div>
-
-                <div class="analyze_item_container">
-                    <span class="item-title">Распределение эритроцитов по объему:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="rdw" name="rdw">
-                </div>
-
-                <div class="analyze_item_container">
-                    <span class="item-title">Количество лейкоцитов:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="tlc" name="tlc">
-                </div>
-
-                <div class="analyze_item_container">
-                    <span class="item-title">Количество тромбоцитов:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="plt" name="plt">
-                </div>
-
-
-                <!--result-->
-                <button class="btn btn-main btn-border-violet mt-4 w-100" id="result-btn">
-                    Показать результаты
-                </button>
-            </div>
-        </form>
+        <ul style="padding-bottom: 100px; padding-top: 30px;">
+        <li>
+            {% if 0 == anemia_counter %}
+            Вы полнотсью здоровы. Продолжайте соблюдать здоровый образ жизни.
+            {% elif 0 < anemia_counter and anemia_counter < 4 %}
+            У вас слабый уровень анемии.
+            {% elif 4 <= anemia_counter and anemia_counter < 8 %}
+            У вас средний уровень анемии.
+            {% else %}
+            У вас тяжелый уровень анемии. Срочно обратитесь к врачу!
+            {% endif %}
+        </li>
+        </ul>
     </div>
-
 
     <div class="page_footer pd-section" style="margin-top: 150px">
         <div class="desc_container align-items-start">

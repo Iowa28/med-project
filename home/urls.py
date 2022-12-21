@@ -14,5 +14,7 @@ urlpatterns = [
     path('analyse.html', views.analyse,name='analyse'),
     path('result.html', views.getresults, name='result'),
     path('anemia-analyse', views.anemia_analyse, name='anemiaanalyse'),
-    path('anemia-result', views.anemia_result, name='anemiaresult')
+    path('anemia-result', views.anemia_result, name='anemiaresult'),
+    path('anemia-test', views.anemia_test, name='anemiatest'),
+    path('anemia-test-result', views.anemia_test_result, name='anemiatestresult')
 ]

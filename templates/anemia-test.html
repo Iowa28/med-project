@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Анализ крови</title>
+    <title>Тест крови</title>
     <link href="{% static "css/bootstrap.min.css"%}" rel="stylesheet">
     <link href="{% static "/css/base.css"%}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
@@ -47,103 +47,112 @@
                 <span class="nav-active d-none"></span>
             </div>
             <div class="nav-item">
-                <a href="{% url 'anemiaanalyse' %}" class="link active">
+                <a href="{% url 'anemiaanalyse' %}" class="link">
                     анализ крови
                 </a>
-                <span class="nav-active"></span>
+                <span class="nav-active d-none"></span>
             </div>
             <div class="nav-item">
-                <a href="{% url 'anemiatest' %}" class="link">
+                <a href="{% url 'anemiatest' %}" class="link active">
                     тест крови
                 </a>
-                <span class="nav-active d-none"></span>
+                <span class="nav-active"></span>
             </div>
         </div>
     </div>
 
     <div class="container">
         <!--        ATTENTION onsubmit="return false;"  !!!-->
-        <form method="POST" action="anemia-result">
+        <form method="POST" action="anemia-test-result">
             {% csrf_token %}
             <div class="mt-5 m-auto w-50">
                 <div>
-                    <h3 class="text-center font-weight-bold" style="padding-bottom: 20px">{{user.username}}, введите ваши показания крови:</h3>
+                    <h3 class="text-center font-weight-bold" style="padding-bottom: 20px">{{user.username}}, ответьте на следующие вопросы:</h3>
                 </div>
 
                 <div class="analyze_item_container" style="margin-top: 20px">
-                    <span class="item-title">Пол:</span>
-                    <input type="text" placeholder="выберите" list="optionsSex"
+                    <span class="item-title">Чувствуете ли вы слабость, головную боль, головокружение, мелькание «мушек» перед глазами?</span>
+                    <input type="checkbox"
                            class="form-control form-input item-control radio-inline"
-                           id="sex" name="sex">
-                    <datalist id="optionsSex">
-                        <option>Муж</option>
-                        <option>Жен</option>
-                    </datalist>
+                           id="weakness" name="weakness">
                 </div>
 
-                <div class="analyze_item_container">
-                    <span class="item-title">Возраст:</span>
-                    <input type="number" placeholder="в годах"
-                           class="form-control form-input item-control"
-                           id="age" name="age">
+                <div class="analyze_item_container" style="margin-top: 20px">
+                    <span class="item-title">Есть ли у вас бледность кожи и видимых слизистых оболочек?</span>
+                    <input type="checkbox"
+                           class="form-control form-input item-control radio-inline"
+                           id="pallor" name="pallor">
                 </div>
 
-                <div class="analyze_item_container">
-                    <span class="item-title">Количество эритроцитов:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="rbc" name="rbc">
+                <div class="analyze_item_container" style="margin-top: 20px">
+                    <span class="item-title">Чувствуете ли вы учащенное сердцебиение?</span>
+                    <input type="checkbox"
+                           class="form-control form-input item-control radio-inline"
+                           id="heartbeat" name="heartbeat">
                 </div>
 
-                <div class="analyze_item_container">
-                    <span class="item-title">Объем кровяных клеток:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="pcv" name="pcv">
+                <div class="analyze_item_container" style="margin-top: 20px">
+                    <span class="item-title">Ощущаете ли вы шум в ушах?</span>
+                    <input type="checkbox"
+                           class="form-control form-input item-control radio-inline"
+                           id="noise" name="noise">
                 </div>
 
-                <div class="analyze_item_container">
-                    <span class="item-title">Средний объём эритроцита:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="mcv" name="mcv">
+                <div class="analyze_item_container" style="margin-top: 20px">
+                    <span class="item-title">Чувствуете ли вы снижение аппетита?</span>
+                    <input type="checkbox"
+                           class="form-control form-input item-control radio-inline"
+                           id="appetite" name="appetite">
                 </div>
 
-                <div class="analyze_item_container">
-                    <span class="item-title">Cреднеклеточный гемоглобин:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="mch" name="mch">
+                <div class="analyze_item_container" style="margin-top: 20px">
+                    <span class="item-title">Чувствуете ли вы снижение работоспособности, концентрации внимания, ухудшение памяти?</span>
+                    <input type="checkbox"
+                           class="form-control form-input item-control radio-inline"
+                           id="efficiency" name="efficiency">
                 </div>
 
-                <div class="analyze_item_container">
-                    <span class="item-title">Насыщенность эритроцитов гемоглобином:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="mchc" name="mchc">
+                <div class="analyze_item_container" style="margin-top: 20px">
+                    <span class="item-title">Присутствует ли у вас плохая переносимость физических нагрузок?</span>
+                    <input type="checkbox"
+                           class="form-control form-input item-control radio-inline"
+                           id="activity" name="activity">
                 </div>
 
-                <div class="analyze_item_container">
-                    <span class="item-title">Распределение эритроцитов по объему:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="rdw" name="rdw">
+                <div class="analyze_item_container" style="margin-top: 20px">
+                    <span class="item-title">Есть ли у вас сухость кожных покровов и их пигментация («кофе с молоком»)?</span>
+                    <input type="checkbox"
+                           class="form-control form-input item-control radio-inline"
+                           id="dryness" name="dryness">
                 </div>
 
-                <div class="analyze_item_container">
-                    <span class="item-title">Количество лейкоцитов:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="tlc" name="tlc">
+                <div class="analyze_item_container" style="margin-top: 20px">
+                    <span class="item-title">Есть ли у вас деформация и изменение структуры ногтей (поперечная исчерченность, вогнутость, истончение, ломкость)?</span>
+                    <input type="checkbox"
+                           class="form-control form-input item-control radio-inline"
+                           id="nails" name="nails">
                 </div>
 
-                <div class="analyze_item_container">
-                    <span class="item-title">Количество тромбоцитов:</span>
-                    <input type="number" step=".1"
-                           class="form-control form-input item-control"
-                           id="plt" name="plt">
+                <div class="analyze_item_container" style="margin-top: 20px">
+                    <span class="item-title">Ощущаете ли вы ухудшение состояния волос (ломкость, тусклость, раздваивание кончиков, выпадение)?</span>
+                    <input type="checkbox"
+                           class="form-control form-input item-control radio-inline"
+                           id="hair" name="hair">
                 </div>
 
+                <div class="analyze_item_container" style="margin-top: 20px">
+                    <span class="item-title">Присутствует ли у вас ангулярный стоматит (заеды в уголках рта)?</span>
+                    <input type="checkbox"
+                           class="form-control form-input item-control radio-inline"
+                           id="stomatitis" name="stomatitis">
+                </div>
+
+                <div class="analyze_item_container" style="margin-top: 20px">
+                    <span class="item-title">Ощущаете ли вы жжения на языке?</span>
+                    <input type="checkbox"
+                           class="form-control form-input item-control radio-inline"
+                           id="burning" name="burning">
+                </div>
 
                 <!--result-->
                 <button class="btn btn-main btn-border-violet mt-4 w-100" id="result-btn">

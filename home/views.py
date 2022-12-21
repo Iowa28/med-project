@@ -178,3 +178,42 @@ def anemia_result(request):
         employee.save()
 
     return render(request, 'results/anemia-result.html', contex)
+
+
+@login_required(login_url='login')
+def anemia_test(request):
+    return render(request, 'anemia-test.html')
+
+@login_required(login_url='login')
+def anemia_test_result(request):
+    contex = {}
+
+    anemia_counter = 0
+    if request.POST.get('weakness'):
+        anemia_counter += 1
+    if request.POST.get('pallor'):
+        anemia_counter += 1
+    if request.POST.get('heartbeat'):
+        anemia_counter += 1
+    if request.POST.get('noise'):
+        anemia_counter += 1
+    if request.POST.get('appetite'):
+        anemia_counter += 1
+    if request.POST.get('efficiency'):
+        anemia_counter += 1
+    if request.POST.get('activity'):
+        anemia_counter += 1
+    if request.POST.get('dryness'):
+        anemia_counter += 1
+    if request.POST.get('nails'):
+        anemia_counter += 1
+    if request.POST.get('hair'):
+        anemia_counter += 1
+    if request.POST.get('stomatitis'):
+        anemia_counter += 1
+    if request.POST.get('burning'):
+        anemia_counter += 1
+
+    contex['anemia_counter'] = anemia_counter
+
+    return render(request, 'results/anemia-test-result.html', contex)
